@@ -379,7 +379,8 @@ public class DBProject {
       try{ 
    String query = "SELECT MAX(b.price)
                    FROM Booking b
-                   WHERE COUNT(*)=k AND date_begin < b.bookingDate AND date_end > b.bookingDate";
+                   WHERE date_begin < b.bookingDate AND date_end > b.bookingDate
+	   	   HAVING COUNT(*)=k";
          System.out.print("\tEnter cost: $");
          String input = in.readLine();
          query += input;
