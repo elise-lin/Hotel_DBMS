@@ -304,42 +304,96 @@ public class DBProject {
 	  // Given a hotelID, get the count of rooms available 
       // Your code goes here.
     //how to pass in hotelID readline lab6
-      
-      SELECT count(r.roomNo)
-      FROM Booking b, Room r
-      WHERE NOT(r.roomNo = b.roomNo)
+      try{ 
+   String query = "SELECT count(r.roomNo)
+                   FROM Booking b, Room r
+                   WHERE NOT EXISTS(SELECT roomNo
+                                    FROM Booking)";
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+
+      // SELECT count(r.roomNo)
+      // FROM Booking b, Room r
+      // WHERE NOT(r.roomNo = b.roomNo)
    }//end numberOfAvailableRooms
    
    public static void numberOfBookedRooms(DBProject esql){
 	  // Given a hotelID, get the count of rooms booked
       // Your code goes here.
-      hID=hotelID
-      SELECT count(b.bID)
-      FROM Booking b
-      WHERE hID=b.hotelID 
+      try{ 
+   String query = "SELECT count(b.roomNo)
+                   FROM Booking b
+                   WHERE b.hotelID = ";
+         System.out.print("\tPlease enter hotel ID: ");
+         String input = in.readLine();
+         query += input;
+
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+      // hID=hotelID
+      // SELECT count(b.bID)
+      // FROM Booking b
+      // WHERE hID=b.hotelID 
    }//end numberOfBookedRoom
    
    public static void listHotelRoomBookingsForAWeek(DBProject esql){
 	  // Given a hotelID, date - list all the rooms available for a week(including the input date) 
       // Your code goes here.
     //FIXME: list roomNo that exist within the date range
-    input1 = HotelID, input2 = Date
-    SELECT r1.roomNo
-    FROM Room r1, Booking b1
-    WHERE  input1=r1.hotelID AND input2 < b1.bookingDate < (input2 + 6) - (SELECT b.roomNo
-                                                        FROM Room r, Booking b
-                                                        WHERE input1=b.hotelID AND input2 < b1.bookingDate < (input2 + 6))
+    //FIXME: make sure this right
+    System.out.print("\tPlease enter hotel ID: ");
+    String input1 = in.readLine();
+    System.out.print("\tPlease enter a date (YYYY-MM-DD): ");
+    String input2 = in.readLine();
+    try{
+    String query = "SELECT r1.roomNo
+                    FROM Room r1, Booking b1
+                    WHERE " + input1 + " = r1.hotelID
+                    AND NOT EXISTS(SELECT b.roomNo
+                                   FROM Room r, Booking b
+                                   WHERE " + input1 + " = r.hotelID AND " + input2 + ">= b.bookingDate AND b.bookingDate < (" + input2 + "+ 6)) ";
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 
+    // input1 = HotelID, input2 = Date
+    // SELECT r1.roomNo
+    // FROM Room r1, Booking b1
+    // WHERE  input1=r1.hotelID AND input2 < b1.bookingDate < (input2 + 6) - (SELECT b.roomNo
+    //                                                     FROM Room r, Booking b
+    //                                                     WHERE input1=b.hotelID AND input2 < b1.bookingDate < (input2 + 6))
    }//end listHotelRoomBookingsForAWeek
    
    public static void topKHighestRoomPriceForADateRange(DBProject esql){
 	  // List Top K Rooms with the highest price for a given date range
       // Your code goes here.
     //FIXME: check K comparison syntax
-      Input1 = k, date_begin = Date start, date_end = Date end
-      SELECT MAX(b.price),
-      FROM Booking b
-      WHERE COUNT(*)=k AND date_begin < b.bookingDate AND date_end > b.bookingDate
+      try{ 
+   String query = "SELECT MAX(b.price)
+                   FROM Booking b
+                   WHERE COUNT(*)=k AND date_begin < b.bookingDate AND date_end > b.bookingDate";
+         System.out.print("\tEnter cost: $");
+         String input = in.readLine();
+         query += input;
+
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+
+      // Input1 = k, date_begin = Date start, date_end = Date end
+      // SELECT MAX(b.price),
+      // FROM Booking b
+      // WHERE COUNT(*)=k AND date_begin < b.bookingDate AND date_end > b.bookingDate
 
    }//end topKHighestRoomPriceForADateRange
    
@@ -373,20 +427,14 @@ WHERE mcID=mc.cmpID AND rep.mCompany
    public static void topKMaintenanceCompany(DBProject esql){
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
       // Your code goes here.
-      input1=k
-      SELECT TOP k 
-      FROM MaintenanceCompany mc, Repair rep
-      WHERE COUNT(rep.rID) AND rep.mCompany = mc.cmpID ORDER BY count desc
+      
    }//end topKMaintenanceCompany
    
    public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
 	  // Given a hotelID, roomNo, get the count of repairs per year
-      hID=hotelID, rNo=roomNo
-      SELECT COUNT*
-      FROM Repairs rep, Room r
-      WHERE r.roomNo=rNo AND r.hotelID=hID AND rep.roomNo=rNo (SELECT * 
-                                                              FROM BLAH ORDER BY YEAR
-        )
+      // Your code goes here.
+      // ...
+      // ...
    }//end listRepairsMade
 
 }//end DBProject
