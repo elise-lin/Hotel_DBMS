@@ -373,14 +373,20 @@ WHERE mcID=mc.cmpID AND rep.mCompany
    public static void topKMaintenanceCompany(DBProject esql){
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
       // Your code goes here.
-      
+      input1=k
+      SELECT TOP k 
+      FROM MaintenanceCompany mc, Repair rep
+      WHERE COUNT(rep.rID) AND rep.mCompany = mc.cmpID ORDER BY count desc
    }//end topKMaintenanceCompany
    
    public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
 	  // Given a hotelID, roomNo, get the count of repairs per year
-      // Your code goes here.
-      // ...
-      // ...
+      hID=hotelID, rNo=roomNo
+      SELECT COUNT*
+      FROM Repairs rep, Room r
+      WHERE r.roomNo=rNo AND r.hotelID=hID AND rep.roomNo=rNo (SELECT * 
+                                                              FROM BLAH ORDER BY YEAR
+        )
    }//end listRepairsMade
 
 }//end DBProject
