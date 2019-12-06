@@ -256,7 +256,8 @@ public class DBProject {
    public static void addCustomer(DBProject esql){
 	  // Given customer details add the customer in the DB 
       // Your code goes here.
-
+      // ...
+      // ...
    }//end addCustomer
 
    public static void addRoom(DBProject esql){
@@ -302,31 +303,22 @@ public class DBProject {
    
    public static void numberOfAvailableRooms(DBProject esql){
 	  // Given a hotelID, get the count of rooms available 
-      // Your code goes here.
-    //how to pass in hotelID readline lab6
-      try{ 
-   String query = "SELECT count(r.roomNo)
-                   FROM Booking b, Room r
-                   WHERE NOT EXISTS(SELECT roomNo
-                                    FROM Booking)";
+   	try{ 
+	System.out.println("\tPlease enter Hotel ID");
+	String input = in.readLine();
+
+	System.out.println("HALLO");//String query = "SELECT r.roomNo FROM Room r WHERE r.hotelID=" +input+"MINUS SELECT b1.roomNo FROM Booking b1 WHERE b1.hotelID="+input;
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
-         System.err.println (e.getMessage());
-      }
-
-      // SELECT count(r.roomNo)
-      // FROM Booking b, Room r
-      // WHERE NOT(r.roomNo = b.roomNo)
-   }//end numberOfAvailableRooms
+         System.err.println(e.getMessage());
+	}//end numberOfAvailableRooms
+	}
    
    public static void numberOfBookedRooms(DBProject esql){
 	  // Given a hotelID, get the count of rooms booked
-      // Your code goes here.
-      try{ 
-   String query = "SELECT count(b.roomNo)
-                   FROM Booking b
-                   WHERE b.hotelID = ";
+   	try{ 
+   String query = "SELECT DISTINCT count(b.roomNo) FROM Booking b WHERE b.hotelID = ";
          System.out.print("\tPlease enter hotel ID: ");
          String input = in.readLine();
          query += input;
@@ -336,66 +328,28 @@ public class DBProject {
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
-      // hID=hotelID
-      // SELECT count(b.bID)
-      // FROM Booking b
-      // WHERE hID=b.hotelID 
-   }//end numberOfBookedRoom
+	}//end numberOfBookedRooms
    
    public static void listHotelRoomBookingsForAWeek(DBProject esql){
-	  // Given a hotelID, date - list all the rooms available for a week(including the input date) 
-      // Your code goes here.
-    //FIXME: list roomNo that exist within the date range
-    //FIXME: make sure this right
-    System.out.print("\tPlease enter hotel ID: ");
-    String input1 = in.readLine();
-    System.out.print("\tPlease enter a date (YYYY-MM-DD): ");
-    String input2 = in.readLine();
-    try{
-    String query = "SELECT r1.roomNo
-                    FROM Room r1, Booking b1
-                    WHERE " + input1 + " = r1.hotelID
-                    AND NOT EXISTS(SELECT b.roomNo
-                                   FROM Room r, Booking b
-                                   WHERE " + input1 + " = r.hotelID AND " + input2 + ">= b.bookingDate AND b.bookingDate < (" + input2 + "+ 6)) ";
-         int rowCount = esql.executeQuery(query);
-         System.out.println ("total row(s): " + rowCount);
-      }catch(Exception e){
-         System.err.println (e.getMessage());
-      }
-
-    // input1 = HotelID, input2 = Date
-    // SELECT r1.roomNo
-    // FROM Room r1, Booking b1
-    // WHERE  input1=r1.hotelID AND input2 < b1.bookingDate < (input2 + 6) - (SELECT b.roomNo
-    //                                                     FROM Room r, Booking b
-    //                                                     WHERE input1=b.hotelID AND input2 < b1.bookingDate < (input2 + 6))
+	  // Given a hotelID, date - list all the rooms available for a week(including the input date)
+	  System.out.print("\tPlease enter hotel ID: ");
+    	  String input1 = in.readLine();
+    	  System.out.print("\tPlease enter a date (YYYY-MM-DD): ");
+    	  String input2 = in.readLine();
+    	  try{
+    		String query = "SELECT r1.roomNo FROM Room r1, Booking b1 WHERE " + input1 + " = r1.hotelID AND NOT EXISTS(SELECT b.roomNo FROM Room r, Booking b WHERE " + input1 + " = r.hotelID AND " + input2 + ">= b.bookingDate AND b.bookingDate < (" + input2 + "+ 6)) ";
+         	int rowCount = esql.executeQuery(query);
+         	System.out.println ("total row(s): " + rowCount);
+      	      }catch(Exception e){
+         		System.err.println (e.getMessage());
+      	      } 
    }//end listHotelRoomBookingsForAWeek
    
    public static void topKHighestRoomPriceForADateRange(DBProject esql){
 	  // List Top K Rooms with the highest price for a given date range
       // Your code goes here.
-    //FIXME: check K comparison syntax
-      try{ 
-   String query = "SELECT MAX(b.price)
-                   FROM Booking b
-                   WHERE date_begin < b.bookingDate AND date_end > b.bookingDate
-	   	   HAVING COUNT(*)=k";
-         System.out.print("\tEnter cost: $");
-         String input = in.readLine();
-         query += input;
-
-         int rowCount = esql.executeQuery(query);
-         System.out.println ("total row(s): " + rowCount);
-      }catch(Exception e){
-         System.err.println (e.getMessage());
-      }
-
-      // Input1 = k, date_begin = Date start, date_end = Date end
-      // SELECT MAX(b.price),
-      // FROM Booking b
-      // WHERE COUNT(*)=k AND date_begin < b.bookingDate AND date_end > b.bookingDate
-
+      // ...
+      // ...
    }//end topKHighestRoomPriceForADateRange
    
    public static void topKHighestPriceBookingsForACustomer(DBProject esql){
@@ -408,27 +362,22 @@ public class DBProject {
    public static void totalCostForCustomer(DBProject esql){
 	  // Given a hotelID, customer Name and date range get the total cost incurred by the customer
       // Your code goes here.
-      hID = hotelID, cfName = firstname, clName = lastname, date_begin = Date start, date_end = Date end
-SELECT SUM(b.price)
-FROM Customer c, Booking b
-WHERE c.fName = cfName AND c.lName = clName AND r.hotelID=hID AND date_begin < b.bookingDate AND date_end > b.bookingDate
-
+      // ...
+      // ...
    }//end totalCostForCustomer
    
    public static void listRepairsMade(DBProject esql){
 	  // Given a Maintenance company name list all the repairs along with repairType, hotelID and roomNo
       // Your code goes here.
-      mcID = maintenance company ID
-SELECT rep.repairType, rep.hotelID, rep.roomNo
-FROM Repair rep, MaintenanceCompany mc
-WHERE mcID=mc.cmpID AND rep.mCompany
-
+      // ...
+      // ...
    }//end listRepairsMade
    
    public static void topKMaintenanceCompany(DBProject esql){
 	  // List Top K Maintenance Company Names based on total repair count (descending order)
       // Your code goes here.
-      
+      // ...
+      // ...
    }//end topKMaintenanceCompany
    
    public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
