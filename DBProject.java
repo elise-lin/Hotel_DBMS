@@ -109,13 +109,13 @@ public class DBProject {
       // iterates through the result set and output them to standard out.
       boolean outputHeader = true;
       while (rs.next()){
-	 if(outputHeader){
-	    for(int i = 1; i <= numCol; i++){
-		System.out.print(rsmd.getColumnName(i) + "\t");
-	    }
-	    System.out.println();
-	    outputHeader = false;
-	 }
+   if(outputHeader){
+      for(int i = 1; i <= numCol; i++){
+    System.out.print(rsmd.getColumnName(i) + "\t");
+      }
+      System.out.println();
+      outputHeader = false;
+   }
          for (int i=1; i<=numCol; ++i)
             System.out.print (rs.getString (i) + "\t");
          System.out.println ();
@@ -168,45 +168,45 @@ public class DBProject {
          boolean keepon = true;
          while(keepon) {
             // These are sample SQL statements
-				System.out.println("MAIN MENU");
-				System.out.println("---------");
-				System.out.println("1. Add new customer");
-				System.out.println("2. Add new room");
-				System.out.println("3. Add new maintenance company");
-				System.out.println("4. Add new repair");
-				System.out.println("5. Add new Booking"); 
-				System.out.println("6. Assign house cleaning staff to a room");
-				System.out.println("7. Raise a repair request");
-				System.out.println("8. Get number of available rooms");
-				System.out.println("9. Get number of booked rooms");
-				System.out.println("10. Get hotel bookings for a week");
-				System.out.println("11. Get top k rooms with highest price for a date range");
-				System.out.println("12. Get top k highest booking price for a customer");
-				System.out.println("13. Get customer total cost occurred for a give date range"); 
-				System.out.println("14. List the repairs made by maintenance company");
-				System.out.println("15. Get top k maintenance companies based on repair count");
-				System.out.println("16. Get number of repairs occurred per year for a given hotel room");
-				System.out.println("17. < EXIT");
+        System.out.println("MAIN MENU");
+        System.out.println("---------");
+        System.out.println("1. Add new customer");
+        System.out.println("2. Add new room");
+        System.out.println("3. Add new maintenance company");
+        System.out.println("4. Add new repair");
+        System.out.println("5. Add new Booking"); 
+        System.out.println("6. Assign house cleaning staff to a room");
+        System.out.println("7. Raise a repair request");
+        System.out.println("8. Get number of available rooms");
+        System.out.println("9. Get number of booked rooms");
+        System.out.println("10. Get hotel bookings for a week");
+        System.out.println("11. Get top k rooms with highest price for a date range");
+        System.out.println("12. Get top k highest booking price for a customer");
+        System.out.println("13. Get customer total cost occurred for a give date range"); 
+        System.out.println("14. List the repairs made by maintenance company");
+        System.out.println("15. Get top k maintenance companies based on repair count");
+        System.out.println("16. Get number of repairs occurred per year for a given hotel room");
+        System.out.println("17. < EXIT");
 
             switch (readChoice()){
-				   case 1: addCustomer(esql); break;
-				   case 2: addRoom(esql); break;
-				   case 3: addMaintenanceCompany(esql); break;
-				   case 4: addRepair(esql); break;
-				   case 5: bookRoom(esql); break;
-				   case 6: assignHouseCleaningToRoom(esql); break;
-				   case 7: repairRequest(esql); break;
-				   case 8: numberOfAvailableRooms(esql); break;
-				   case 9: numberOfBookedRooms(esql); break;
-				   case 10: listHotelRoomBookingsForAWeek(esql); break;
-				   case 11: topKHighestRoomPriceForADateRange(esql); break;
-				   case 12: topKHighestPriceBookingsForACustomer(esql); break;
-				   case 13: totalCostForCustomer(esql); break;
-				   case 14: listRepairsMade(esql); break;
-				   case 15: topKMaintenanceCompany(esql); break;
-				   case 16: numberOfRepairsForEachRoomPerYear(esql); break;
-				   case 17: keepon = false; break;
-				   default : System.out.println("Unrecognized choice!"); break;
+           case 1: addCustomer(esql); break;
+           case 2: addRoom(esql); break;
+           case 3: addMaintenanceCompany(esql); break;
+           case 4: addRepair(esql); break;
+           case 5: bookRoom(esql); break;
+           case 6: assignHouseCleaningToRoom(esql); break;
+           case 7: repairRequest(esql); break;
+           case 8: numberOfAvailableRooms(esql); break;
+           case 9: numberOfBookedRooms(esql); break;
+           case 10: listHotelRoomBookingsForAWeek(esql); break;
+           case 11: topKHighestRoomPriceForADateRange(esql); break;
+           case 12: topKHighestPriceBookingsForACustomer(esql); break;
+           case 13: totalCostForCustomer(esql); break;
+           case 14: listRepairsMade(esql); break;
+           case 15: topKMaintenanceCompany(esql); break;
+           case 16: numberOfRepairsForEachRoomPerYear(esql); break;
+           case 17: keepon = false; break;
+           default : System.out.println("Unrecognized choice!"); break;
             }//end switch
          }//end while
       }catch(Exception e) {
@@ -228,7 +228,7 @@ public class DBProject {
    public static void Greeting(){
       System.out.println(
          "\n\n*******************************************************\n" +
-         "              User Interface      	               \n" +
+         "              User Interface                       \n" +
          "*******************************************************\n");
    }//end Greeting
 
@@ -254,14 +254,14 @@ public class DBProject {
 
    
    public static void addCustomer(DBProject esql){
-	  // Given customer details add the customer in the DB 
+    // Given customer details add the customer in the DB 
       // Your code goes here.
       // ...
       // ...
    }//end addCustomer
 
    public static void addRoom(DBProject esql){
-	  // Given room details add the room in the DB
+    // Given room details add the room in the DB
       // Your code goes here.
       // ...
       // ...
@@ -274,50 +274,50 @@ public class DBProject {
    }//end addMaintenanceCompany
 
    public static void addRepair(DBProject esql){
-	  // Given repair details add repair in the DB
+    // Given repair details add repair in the DB
       // Your code goes here.
       // ...
       // ...
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
-	  // Given hotelID, roomNo and customer Name create a booking in the DB 
+    // Given hotelID, roomNo and customer Name create a booking in the DB 
       // Your code goes here.
       // ...
       // ...
    }//end bookRoom
 
    public static void assignHouseCleaningToRoom(DBProject esql){
-	  // Given Staff SSN, HotelID, roomNo Assign the staff to the room 
+    // Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
       // ...
       // ...
    }//end assignHouseCleaningToRoom
    
    public static void repairRequest(DBProject esql){
-	  // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
+    // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
       // Your code goes here.
       // ...
       // ...
    }//end repairRequest
    
    public static void numberOfAvailableRooms(DBProject esql){
-	  // Given a hotelID, get the count of rooms available 
-   	try{ 
-	System.out.println("\tPlease enter Hotel ID");
-	String input = in.readLine();
+    // Given a hotelID, get the count of rooms available 
+    try{ 
+  System.out.println("\tPlease enter Hotel ID");
+  String input = in.readLine();
 
-	System.out.println("HALLO");//String query = "SELECT r.roomNo FROM Room r WHERE r.hotelID=" +input+"MINUS SELECT b1.roomNo FROM Booking b1 WHERE b1.hotelID="+input;
+  String query = "SELECT r.roomNo FROM Room r WHERE r.hotelID=" +input+"MINUS SELECT b1.roomNo FROM Booking b1 WHERE b1.hotelID="+input;
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println(e.getMessage());
-	}//end numberOfAvailableRooms
-	}
+  }//end numberOfAvailableRooms
+  }
    
    public static void numberOfBookedRooms(DBProject esql){
-	  // Given a hotelID, get the count of rooms booked
-   	try{ 
+    // Given a hotelID, get the count of rooms booked
+    try{ 
    String query = "SELECT DISTINCT count(b.roomNo) FROM Booking b WHERE b.hotelID = ";
          System.out.print("\tPlease enter hotel ID: ");
          String input = in.readLine();
@@ -328,60 +328,82 @@ public class DBProject {
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
-	}//end numberOfBookedRooms
+  }//end numberOfBookedRooms
    
    public static void listHotelRoomBookingsForAWeek(DBProject esql){
-	  // Given a hotelID, date - list all the rooms available for a week(including the input date)
-	  System.out.print("\tPlease enter hotel ID: ");
-    	  String input1 = in.readLine();
-    	  System.out.print("\tPlease enter a date (YYYY-MM-DD): ");
-    	  String input2 = in.readLine();
-    	  try{
-    		String query = "SELECT r1.roomNo FROM Room r1, Booking b1 WHERE " + input1 + " = r1.hotelID AND NOT EXISTS(SELECT b.roomNo FROM Room r, Booking b WHERE " + input1 + " = r.hotelID AND " + input2 + ">= b.bookingDate AND b.bookingDate < (" + input2 + "+ 6)) ";
-         	int rowCount = esql.executeQuery(query);
-         	System.out.println ("total row(s): " + rowCount);
-      	      }catch(Exception e){
-         		System.err.println (e.getMessage());
-      	      } 
+    // Given a hotelID, date - list all the rooms available for a week(including the input date)
+    System.out.print("\tPlease enter hotel ID: ");
+    String input1 = in.readLine();
+    System.out.print("\tPlease enter a date (YYYY-MM-DD): ");
+    String input2 = in.readLine();
+    try{
+    String query = "SELECT r1.roomNo
+                    FROM Room r1
+                    WHERE " + input1 + " = r1.hotelID
+                    MINUS
+                    SELECT b.roomNo
+                    FROM Booking b
+                    WHERE " + input1 + " = b.hotelID AND b.bookingDate BETWEEN" + input2 + " AND " + (input2 + 6);
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      } 
    }//end listHotelRoomBookingsForAWeek
    
    public static void topKHighestRoomPriceForADateRange(DBProject esql){
-	  // List Top K Rooms with the highest price for a given date range
+    // List Top K Rooms with the highest price for a given date range
       // Your code goes here.
-      // ...
-      // ...
+      try{ 
+        System.out.print("\tEnter number of rooms K: ");
+         String k = in.readLine();
+        System.out.print("\tPlease enter a starting date (YYYY-MM-DD): ");
+         String sdate = in.readLine();
+        System.out.print("\tPlease enter an ending date (YYYY-MM-DD): ");
+         String edate = in.readLine();
+      
+   String query = "SELECT MAX(b.price)
+                   FROM Booking b
+                   WHERE date_begin < b.bookingDate AND date_end > b.bookingDate
+                   HAVING COUNT(*)=k";
+
+         int rowCount = esql.executeQuery(query);
+         System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
    }//end topKHighestRoomPriceForADateRange
    
    public static void topKHighestPriceBookingsForACustomer(DBProject esql){
-	  // Given a customer Name, List Top K highest booking price for a customer 
+    // Given a customer Name, List Top K highest booking price for a customer 
       // Your code goes here.
       // ...
       // ...
    }//end topKHighestPriceBookingsForACustomer
    
    public static void totalCostForCustomer(DBProject esql){
-	  // Given a hotelID, customer Name and date range get the total cost incurred by the customer
+    // Given a hotelID, customer Name and date range get the total cost incurred by the customer
       // Your code goes here.
       // ...
       // ...
    }//end totalCostForCustomer
    
    public static void listRepairsMade(DBProject esql){
-	  // Given a Maintenance company name list all the repairs along with repairType, hotelID and roomNo
+    // Given a Maintenance company name list all the repairs along with repairType, hotelID and roomNo
       // Your code goes here.
       // ...
       // ...
    }//end listRepairsMade
    
    public static void topKMaintenanceCompany(DBProject esql){
-	  // List Top K Maintenance Company Names based on total repair count (descending order)
+    // List Top K Maintenance Company Names based on total repair count (descending order)
       // Your code goes here.
       // ...
       // ...
    }//end topKMaintenanceCompany
    
    public static void numberOfRepairsForEachRoomPerYear(DBProject esql){
-	  // Given a hotelID, roomNo, get the count of repairs per year
+    // Given a hotelID, roomNo, get the count of repairs per year
       // Your code goes here.
       // ...
       // ...
