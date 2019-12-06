@@ -303,16 +303,19 @@ public class DBProject {
    
    public static void numberOfAvailableRooms(DBProject esql){
     // Given a hotelID, get the count of rooms available 
-    try{ 
-  System.out.println("\tPlease enter Hotel ID");
-  String input = in.readLine();
+    try{
+        System.out.println("\tPlease enter Hotel ID");
+        String input = in.readLine();
 
-  String query = "SELECT r.roomNo FROM Room r WHERE r.hotelID=" +input+"MINUS SELECT b1.roomNo FROM Booking b1 WHERE b1.hotelID="+input;
+        String query = "SELECT COUNT(r.roomNo) FROM Room r WHERE r.hotelID = ";
+        query+=input + " NOT IN (SELECT COUNT(b1.roomNo) FROM Booking b1 WHERE b1.hotelID = ";
+        query += input + ");";
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println(e.getMessage());
-  }//end numberOfAvailableRooms
+        }//end numberOfAvailableRooms
+
   }
    
    public static void numberOfBookedRooms(DBProject esql){
