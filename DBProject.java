@@ -46,6 +46,28 @@ public class DBProject {
     * @param password the user login password
     * @throws java.sql.SQLException when failed to make a connection.
     */
+  // public class GeneralException extends Exception {
+
+  //   public GeneralException(String message){
+  //      super("error you suck");
+  //   }s
+
+  // }
+
+   static void checkInt(int checkI){ 
+      if(checkI < 0) {
+         throw new ArithmeticException("ERROR: No negative inputs!\n");      
+      }
+   }
+
+   static void checkStr(String checkS){ 
+      if(checkS.matches(".*\\d.*")) {       
+       // System.out.println("ERROR: No numbers in names!\n");
+       throw new ArithmeticException("ERROR: No numbers in names!\n");
+     }
+    }
+   
+
    public DBProject (String dbname, String dbport, String user, String passwd) throws SQLException {
 
       System.out.print("Connecting to database...");
@@ -276,7 +298,7 @@ public class DBProject {
       input = in.readLine();
     
       while (input.equals("") && i < 3) {
-        System.out.println("ERROR: " + custString[i] + " cannot be empty. Try again");
+        System.out.println("ERROR: " + custString[i] + " cannot be empty. Please try again");
         System.out.print("Enter " + custString[i] + ": ");
         input = in.readLine();
       }
@@ -299,10 +321,12 @@ public class DBProject {
       try {
       System.out.print("Enter Hotel ID: ");
       String hotelID = in.readLine();
+      checkInt(Integer.parseInt(hotelID));
       String query = "INSERT INTO Room (hotelID, roomNo, roomType) VALUES ('" + hotelID + "', ";
 
       System.out.print("Enter Room Number: ");
       String roomNo = in.readLine();
+      checkInt(Integer.parseInt(roomNo));
       query += "'" + roomNo + "'" + ", ";
 
       System.out.print("Enter Room Type: ");
@@ -319,17 +343,20 @@ public class DBProject {
     try {
     System.out.print("Enter Maintenance Company ID: ");
     String cmpID = in.readLine();
+    checkInt(Integer.parseInt(cmpID));
     String query = "INSERT INTO MaintenanceCompany (cmpID, name, address, isCertified) VALUES ('" + cmpID + "', ";
 
     System.out.print("Enter Name: ");
     String name = in.readLine();
+    checkStr(name);
     query += "'" + name + "'" + ", ";
 
     System.out.print("Enter Address: ");
     String address = in.readLine();
+    checkStr(address);
     query += "'" + address + "'" + ", ";
 
-    System.out.print("Enter if Certified: ");
+    System.out.print("Enter Certificaiton TRUE/FALSE: ");
     String isCertified = in.readLine();
     query += "'" + isCertified + "'" + ");";
 
@@ -345,22 +372,27 @@ public class DBProject {
        try {
         System.out.print("Enter Repair ID: ");
         String rID = in.readLine();
+        checkInt(Integer.parseInt(rID));
         String query = "INSERT INTO Repair (rID, hotelID, roomNo, mCompany, repairDate, description, repairtype) VALUES ('" + rID + "', ";
 
         System.out.print("Enter Hotel ID: ");
         String hotelID = in.readLine();
+        checkInt(Integer.parseInt(hotelID));
         query += "'" + hotelID + "'" + ", ";
 
         System.out.print("Enter Room Number: ");
         String roomNo = in.readLine();
+        checkInt(Integer.parseInt(roomNo));
         query += "'" + roomNo + "'" + ", ";
 
-        System.out.print("Enter Maintenance Company: ");
+        System.out.print("Enter Maintenance Company ID: ");
         String mCompany = in.readLine();
+        checkInt(Integer.parseInt(mCompany));
         query += "'" + mCompany + "'" + ", ";
 
-        System.out.print("Enter Repair Date: ");
+        System.out.print("Enter Repair Date (YYYYMMDD): ");
         String repairDate = in.readLine();
+        checkInt(Integer.parseInt(repairDate));
         query += "'" + repairDate + "'" + ", ";
 
         System.out.print("Enter Description: ");
@@ -404,21 +436,9 @@ public class DBProject {
       System.out.print("Enter the hotelID: ");
 
       String input;
-      while (true) {
-        try {
-            input = in.readLine();
-            break;
-        }
-        catch (InputMismatchException e) {
-            System.out.print("Invalid input. Please reenter: ");
-            scan.nextLine();
-        }
-    }
-
-    System.out.println("you entered: " + input);
-        // System.out.println("\tPlease enter Hotel ID");
-        // String input = in.readLine();
-
+      input = in.readLine();
+      checkInt(Integer.parseInt(input));
+      
         String query = "SELECT COUNT(r.roomNo) FROM (SELECT roomNo FROM Room WHERE hotelID = ";
         query+=input + ") AS r WHERE r.roomNo NOT IN (SELECT b1.roomNo FROM Booking b1 WHERE b1.hotelID = ";
         query += input + ")";
@@ -437,6 +457,7 @@ public class DBProject {
    String query = "SELECT DISTINCT count(b.roomNo) FROM Booking b WHERE b.hotelID = ";
          System.out.print("\tPlease enter hotel ID: ");
          String input = in.readLine();
+         checkInt(Integer.parseInt(input));
          query += input;
 
          int rowCount = esql.executeQuery(query);
@@ -451,8 +472,10 @@ public class DBProject {
     try{
     System.out.print("\tPlease enter hotel ID: ");
     String input1 = in.readLine();
+    checkInt(Integer.parseInt(input1));
     System.out.print("\tPlease enter a date (YYYYMMDD): ");
     String input2 = in.readLine();
+    checkInt(Integer.parseInt(input2));
     String query = "SELECT roomNo FROM Booking WHERE " + input1 + " = hotelID AND bookingDate BETWEEN TO_DATE('" + input2 + "', 'YYYYMMDD') AND TO_DATE('" + input2 + "', 'YYYYMMDD') + 7 ";
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
@@ -467,10 +490,13 @@ public class DBProject {
       try{ 
         System.out.print("\tEnter number of rooms K: ");
          String k = in.readLine();
+         checkInt(Integer.parseInt(k));
         System.out.print("\tPlease enter a starting date (YYYYMMDD): ");
          String sdate = in.readLine();
+         checkInt(Integer.parseInt(sdate));
         System.out.print("\tPlease enter an ending date (YYYYMMDD): ");
          String edate = in.readLine();
+         checkInt(Integer.parseInt(edate));
       
    String query = "SELECT roomNo FROM Booking WHERE bookingDate BETWEEN TO_DATE('" + sdate + "' , 'YYYYMMDD') AND TO_DATE('" + edate + "' , 'YYYYMMDD') ORDER BY price DESC LIMIT " + k;
 
@@ -487,10 +513,13 @@ public class DBProject {
       try{ 
         System.out.print("\tEnter number of prices K: ");
          String k = in.readLine();
+         checkInt(Integer.parseInt(k));
         System.out.print("\tPlease enter customer first name: ");
          String fName = in.readLine();
+         checkStr(fName);
         System.out.print("\tPlease enter an customer last name: ");
          String lName = in.readLine();
+         checkStr(fName);
       
    String query = "SELECT b.price FROM Booking b, Customer c WHERE c.fName = '" + fName + "' AND c.lName = '" + lName + "' AND b.customer=c.customerID ORDER BY price DESC LIMIT " + k;
 
@@ -507,15 +536,19 @@ public class DBProject {
       try{ 
         System.out.print("\tPlease enter hotel ID: ");
            String hID = in.readLine();
+           checkInt(Integer.parseInt(hID));
         System.out.print("\tPlease enter the customer's first name: ");
            String firstName = in.readLine();
+           checkStr(firstName);
         System.out.print("\tPlease enter the customer's last name: ");
            String lastName = in.readLine();
+           checkStr(lastName);
         System.out.print("\tPlease enter the starting date (YYYYMMDD): ");
            String sDate = in.readLine();
+           checkInt(Integer.parseInt(sDate));
         System.out.print("\tPlease enter the ending date (YYYYMMDD): ");
            String eDate = in.readLine();
-
+           checkInt(Integer.parseInt(eDate));
      String query = "SELECT SUM(b.price) total FROM Customer c, Booking b WHERE c.fName = '" + firstName + "' AND c.lName = '" + lastName + "' AND c.customerID = b.customer AND b.hotelID = '" + hID + "' AND b.bookingDate BETWEEN TO_DATE('" + sDate + "', 'YYYYMMDD') AND TO_DATE('" + eDate + "', 'YYYYMMDD') ";
 
          int rowCount = esql.executeQuery(query);
@@ -531,6 +564,7 @@ public class DBProject {
       try{ 
         System.out.print("\tEnter Maintenance company name: ");
          String mcName = in.readLine();
+         checkStr(mcName);
 
    String query = "SELECT rep.rID, rep.repairType, rep.hotelID, rep.roomNo FROM Repair rep, MaintenanceCompany mc WHERE '" + mcName + "' = mc.name AND rep.mCompany = mc.cmpID";
 
@@ -547,6 +581,7 @@ public class DBProject {
       try {
         System.out.print("\tEnter maintenance company k-th value: ");
         String k = in.readLine();
+        checkInt(Integer.parseInt(k));
 
         String query = "SELECT mc.name, COUNT(rep.rID) FROM MaintenanceCompany mc, Repair rep WHERE mc.cmpID=rep.mCompany GROUP BY mc.name ORDER BY COUNT(rep.rID) DESC LIMIT " + k;
 
@@ -564,10 +599,12 @@ public class DBProject {
       try {
         System.out.print("\t Enter hotel ID: ");
         String hID = in.readLine();
+        checkInt(Integer.parseInt(hID));
         System.out.print("\t Enter room number: ");
         String rNo = in.readLine();
+        checkInt(Integer.parseInt(rNo));
 
-        String query = "SELECT EXTRACT(YEAR FROM rep.repairDate), COUNT(rep.rID) FROM Room r, Repair rep WHERE r.roomNo = '" + rNo + "' AND r.hotelID = '" + hID + "' AND r.roomNo = rep.roomNo GROUP BY EXTRACT(YEAR FROM rep.repairDate) ORDER BY EXTRACT(YEAR FROM rep.repairDate) DESC";
+        String query = "SELECT EXTRACT(YEAR FROM rep.repairDate), COUNT(rep.rID) FROM Repair rep WHERE rep.roomNo = '" + rNo + "' AND rep.hotelID = '" + hID + "' GROUP BY EXTRACT(YEAR FROM rep.repairDate) ORDER BY EXTRACT(YEAR FROM rep.repairDate) DESC";
 
         int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
