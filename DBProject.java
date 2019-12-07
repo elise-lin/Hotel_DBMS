@@ -189,6 +189,29 @@ public class DBProject {
 
          boolean keepon = true;
          while(keepon) {
+            
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+            System.out.println("                             @@@@@@@@@@@ ");
+            System.out.println("                            ,@@@@@@@@@@@,");
+            System.out.println("                            &           & ");
+            System.out.println("                           ,&@@@@@@@@@@@@,");
+            System.out.println("                           #@@@*.    ,@@@# ");
+            System.out.println("                           /@@         @@/            ,-------------------------.");
+            System.out.println("                                      #&.            ( How can I help you today? )");
+            System.out.println("                          / &           & %           `-------------------------y'");
+            System.out.println("                           *&.         .&/         ");
+            System.out.println("                             %.       .%       ");
+            System.out.println("                               @.   .@ ");
+            System.out.println("                              *((   ((/ ");
+            System.out.println("                        /@@@@@%   &   %@@@@@/");
+            System.out.println("                      .@@@@@@@@@@(%/@@@@@@@@@@.");
+            System.out.println("                      @@@@@@@@@@@@.@@@@@@@@@@@@");
+            System.out.println("                     #@@@&@@@,.&@@.@@&.,@@@@@@@#");
+            System.out.println("                    .@@@*/@@%  /@@.@@/  %@@/*@@@.");
+            System.out.println("                    %@@@*/@@@&@@@@.@@&&@@@@/*@@@%             __!__  ");
+            System.out.println("                    @@@@*/@&@#/@@@.@@@/#@@@/*@@@@            ,**,*// ");
+            System.out.println("                   #@@@@*/@@(  ,@@.@@.  (@@/*@@@@#          &&%%%%&&@");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             // These are sample SQL statements
         System.out.println("MAIN MENU");
         System.out.println("---------");
