@@ -262,6 +262,29 @@ public class DBProject {
       System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
       System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
       System.out.println("\"\'\'\'\"\'\'\"\'\"\"\'\"\"\"\'\'\"\'\'\'\'\"\"\"\'\"\"\'\"\"\"");
+      
+      System.out.println(" \n \n W E L C O M E  T O  H O T E L  S T A N L E Y & E L I S E \n\n\n");
+      System.out.println("                   \\  |  /         ___________");
+      System.out.println("    ____________  \\ \\_# /         |  ___      |       _________");
+      System.out.println("   |            |  \\  #/          | |   |     |      | = = = = |");
+      System.out.println("   | |   |   |  |   \\\\#           | |`v'|     |      |         |");
+      System.out.println("   |            |    \\#  //       |  --- ___  |      | |  || | |");
+      System.out.println("   | |   |   |  |     #_//        |     |   | |      |         |");
+      System.out.println("   |            |  \\\\ #_/_______  |     |   | |      | |  || | |");
+      System.out.println("   | |   |   |  |   \\\\# /_____/ \\ |      ---  |      |         |");
+      System.out.println("   |            |    \\# |+ ++|  | |  |^^^^^^| |      | |  || | |");
+      System.out.println("   |            |    \\# |+ ++|  | |  |^^^^^^| |      | |  || | |");
+      System.out.println("^^^|    (^^^^^) |^^^^^#^| H  |_ |^|  | |||| | |^^^^^^|         |");
+      System.out.println("   |    ( ||| ) |     # ^^^^^^    |  | |||| | |      | ||||||| |");
+      System.out.println("   ^^^^^^^^^^^^^________/  /_____ |  | |||| | |      | ||||||| |");
+      System.out.println("        `v'-                      ^^^^^^^^^^^^^      | ||||||| |");
+      System.out.println("         || |`.      (__)    (__)                          ( )");
+      System.out.println("                     (oo)    (oo)                       /---V");
+      System.out.println("              /-------\\/      \\/ --------\\             * |  |");
+      System.out.println("             / |     ||        ||_______| \\ ");
+      System.out.println("            *  ||W---||        ||      ||  *");
+      System.out.println("               ^^    ^^        ^^      ^^");
+      System.out.println("\n \n ~ O P E N  D U R I N G  T H E  H O L I D A Y  S E A S O N! ~\n \n \n");
    }//end Greeting
 
    /*
@@ -289,6 +312,16 @@ public class DBProject {
     // Given customer details add the customer in the DB 
       // Your code goes here.
       try {
+         System.out.println("\n\n");
+         System.out.println("            O      ~O");
+        System.out.println("           <|\\     /|\\");
+        System.out.println("            |   ~o/ | \\o    ~o/    _o      ");
+        System.out.println("            |\\  /|  |\\ |\\   /|      |\\");
+        System.out.println("           / |  / \\ |// >   / \\    / > \n ");
+
+        System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("\t |    Adding a new customer.  |");
+        System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       String input = "";
       String query = "INSERT INTO Customer VALUES (";
       String[] custString = {"Customer ID", "First Name", "Last Name", "Address", "Phone Number", "Date of Birth", "Gender"};
@@ -319,6 +352,15 @@ public class DBProject {
     // Given room details add the room in the DB
       // Your code goes here.
       try {
+         System.out.println("\n\n");
+      System.out.println("               .--.");
+      System.out.println("              /.-. '----------.");
+      System.out.println("              \\'-' .--\"--\"\"-\"-'");
+      System.out.println("               '--'");
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("\t |    Adding a room.    |");
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~");
+         
       System.out.print("Enter Hotel ID: ");
       String hotelID = in.readLine();
       checkInt(Integer.parseInt(hotelID));
@@ -341,6 +383,22 @@ public class DBProject {
    public static void addMaintenanceCompany(DBProject esql){
       // Given maintenance Company details add the maintenance company in the DB
     try {
+       System.out.println("\n\n\n");
+      System.out.println("\t                      @/#    ");
+      System.out.println("\t                     (@/   /%");
+      System.out.println("\t                     #&@/////");
+      System.out.println("\t                     *,,*%%@/");
+      System.out.println("\t                   ##(*@      ");
+      System.out.println("\t                 @,(*@ ");
+      System.out.println("\t                *#(*@ ");
+      System.out.println("\t              %*(,@ ");
+      System.out.println("\t          .//##,% ");
+      System.out.println("\t          /@/@/@%");
+      System.out.println("\t          @   /%@ \n");
+
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("\t |    Adding a maintenance company  |");
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.print("Enter Maintenance Company ID: ");
     String cmpID = in.readLine();
     checkInt(Integer.parseInt(cmpID));
@@ -370,6 +428,22 @@ public class DBProject {
     // Given repair details add repair in the DB
       // Your code goes here.
        try {
+          System.out.println("\n\n\n");
+          System.out.println("\t                      @/#    ");
+          System.out.println("\t                     (@/   /%");
+          System.out.println("\t                     #&@/////");
+          System.out.println("\t                     *,,*%%@/");
+          System.out.println("\t                   ##(*@      ");
+          System.out.println("\t                 @,(*@ ");
+          System.out.println("\t                *#(*@ ");
+          System.out.println("\t              %*(,@ ");
+          System.out.println("\t          .//##,% ");
+          System.out.println("\t          /@/@/@%");
+          System.out.println("\t          @   /%@ \n");
+
+          System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println("\t |    Adding a repair   |");
+          System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.print("Enter Repair ID: ");
         String rID = in.readLine();
         checkInt(Integer.parseInt(rID));
@@ -410,6 +484,16 @@ public class DBProject {
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
+      System.out.println("\n\n");
+      System.out.println("\t      ______ ______");
+      System.out.println("\t    _/      Y      \\_");
+      System.out.println("\t   // ~~ ~~ | ~~ ~  \\\\");
+      System.out.println("\t  // ~ ~ ~~ | ~~~ ~~ \\\\");
+      System.out.println("\t //________.|.________\\\\");
+      System.out.println("\t`----------`-'----------'");
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("\t |    Adding a booking.   |");
+      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
     // Given hotelID, roomNo and customer Name create a booking in the DB 
       // Your code goes here.
       // ...
@@ -444,7 +528,9 @@ public class DBProject {
         query += input + ")";
 
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println(e.getMessage());
@@ -460,7 +546,9 @@ public class DBProject {
          checkInt(Integer.parseInt(input));
          query += input;
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -477,7 +565,9 @@ public class DBProject {
     String input2 = in.readLine();
     checkInt(Integer.parseInt(input2));
     String query = "SELECT roomNo FROM Booking WHERE " + input1 + " = hotelID AND bookingDate BETWEEN TO_DATE('" + input2 + "', 'YYYYMMDD') AND TO_DATE('" + input2 + "', 'YYYYMMDD') + 7 ";
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -500,7 +590,9 @@ public class DBProject {
       
    String query = "SELECT roomNo FROM Booking WHERE bookingDate BETWEEN TO_DATE('" + sdate + "' , 'YYYYMMDD') AND TO_DATE('" + edate + "' , 'YYYYMMDD') ORDER BY price DESC LIMIT " + k;
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -523,7 +615,9 @@ public class DBProject {
       
    String query = "SELECT b.price FROM Booking b, Customer c WHERE c.fName = '" + fName + "' AND c.lName = '" + lName + "' AND b.customer=c.customerID ORDER BY price DESC LIMIT " + k;
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -551,7 +645,9 @@ public class DBProject {
            checkInt(Integer.parseInt(eDate));
      String query = "SELECT SUM(b.price) total FROM Customer c, Booking b WHERE c.fName = '" + firstName + "' AND c.lName = '" + lastName + "' AND c.customerID = b.customer AND b.hotelID = '" + hID + "' AND b.bookingDate BETWEEN TO_DATE('" + sDate + "', 'YYYYMMDD') AND TO_DATE('" + eDate + "', 'YYYYMMDD') ";
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -568,7 +664,9 @@ public class DBProject {
 
    String query = "SELECT rep.rID, rep.repairType, rep.hotelID, rep.roomNo FROM Repair rep, MaintenanceCompany mc WHERE '" + mcName + "' = mc.name AND rep.mCompany = mc.cmpID";
 
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       }catch(Exception e){
          System.err.println (e.getMessage());
@@ -585,7 +683,9 @@ public class DBProject {
 
         String query = "SELECT mc.name, COUNT(rep.rID) FROM MaintenanceCompany mc, Repair rep WHERE mc.cmpID=rep.mCompany GROUP BY mc.name ORDER BY COUNT(rep.rID) DESC LIMIT " + k;
 
-        int rowCount = esql.executeQuery(query);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
+         int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       } catch(Exception e) {
         System.err.println (e.getMessage());
@@ -606,7 +706,9 @@ public class DBProject {
 
         String query = "SELECT EXTRACT(YEAR FROM rep.repairDate), COUNT(rep.rID) FROM Repair rep WHERE rep.roomNo = '" + rNo + "' AND rep.hotelID = '" + hID + "' GROUP BY EXTRACT(YEAR FROM rep.repairDate) ORDER BY EXTRACT(YEAR FROM rep.repairDate) DESC";
 
-        int rowCount = esql.executeQuery(query);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
+         int rowCount = esql.executeQuery(query);
+         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
          System.out.println ("total row(s): " + rowCount);
       } catch(Exception e) {
         System.err.println (e.getMessage());
