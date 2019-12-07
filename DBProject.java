@@ -651,6 +651,29 @@ public class DBProject {
     // Given a hotelID, customer Name and date range get the total cost incurred by the customer
       // Your code goes here.
       try{ 
+        System.out.println(" ______________________________________________________________________");
+        System.out.println(" |.============[_F_E_D_E_R_A_L___R_E_S_E_R_V_E___N_O_T_E_]=============.|");
+        System.out.println(" ||%&%&%&%_    _        _ _ _   _ _  _ _ _     _       _    _  %&%&%&%&||");
+        System.out.println(" ||%&.-.&/||_||_ | ||\||||_| \ (_ ||\||_(_  /\|_ |\|V||_|)|/ |\ %&.-.&&||");
+        System.out.println(" ||&// |\ || ||_ \_/| ||||_|_/ ,_)|||||_,_) \/|  ||| ||_|\|\_|| &// |\%||");
+        System.out.println(" ||| | | |%               ,-----,-'____'-,-----,               %| | | |||");
+        System.out.println(" ||| | | |&% """"""""""  [    .-;\"`___ `\";-.    ]             &%| | | |||");
+        System.out.println(" ||&\===//                `).'' .'`_.- `. '.'.(`  A 76355942 J  \\===/&||");
+        System.out.println(" ||&%'-'%/1                // .' /`     \    \\                  \%'-'%||");
+        System.out.println(" ||%&%&%/`   d8888b       // /   \  _  _;,    \\      .-\"\"\"-.  1 `&%&%%||");
+        System.out.println(" ||&%&%&    8P |) Yb     ;; (     > a  a| \    ;;    //A`Y A\\    &%&%&||");
+        System.out.println(" ||&%&%|    8b |) d8     || (    ,\   \ |  )   ||    ||.-'-.||    |%&%&||");
+        System.out.println(" ||%&%&|     Y8888P      ||  '--'/`  -- /-'    ||    \\_/~\_//    |&%&%||");
+        System.out.println(" ||%&%&|                 ||     |\`-.__/       ||     '-...-'     |&%&%||");
+        System.out.println(" ||%%%%|                 ||    /` |._ .|-.     ||                 |%&%&||");
+        System.out.println(" ||%&%&|  A 76355942 J  /;\ _.'   \  } \  '-.  /;\                |%&%&||");
+        System.out.println(" ||&%.-;               (,  '.      \  } `\   \'  ,)   ,.,.,.,.,   ;-.%&||");
+        System.out.println(" ||%( | ) 1  \"\"\"\"\"\"\"   _( \  ;...---------.;.; / )_ ```\"\"\"\"\"\"\" 1 ( | )%||");
+        System.out.println(" ||&%'-'==================\`------------------`/=================='-'%&||");
+        System.out.println(" ||%&JGS&%&%&%&%%&%&&&%&%%&)O N E  D O L L A R(%&%&%&%&%&%&%%&%&&&%&%%&||");
+        System.out.println(" '""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""`");                   
+
+         
         System.out.print("\tPlease enter hotel ID: ");
            String hID = in.readLine();
            checkInt(Integer.parseInt(hID));
