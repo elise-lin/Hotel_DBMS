@@ -60,12 +60,49 @@ public class DBProject {
       }
    }
 
-   static void checkStr(String checkS){ 
+   static void checkStr(String checkS) {     
       if(checkS.matches(".*\\d.*")) {       
        // System.out.println("ERROR: No numbers in names!\n");
        throw new ArithmeticException("ERROR: No numbers in names!\n");
      }
     }
+
+    public ResultSet executeQueryForID (String query) throws SQLException {
+      // creates a statement object
+      Statement stmt = this._connection.createStatement ();
+
+      // issues the query instruction
+      ResultSet rs = stmt.executeQuery (query);
+      return rs;
+    }//end executeQueryForID
+
+    public String executeQueryForString (String query) throws SQLException {
+      // creates a statement object
+      Statement stmt = this._connection.createStatement ();
+
+      // issues the query instruction
+      ResultSet rs = stmt.executeQuery (query);
+      
+      /*
+       ** obtains the metadata object for the returned result set.  The metadata
+       ** contains row and column info.
+       */
+      ResultSetMetaData rsmd = rs.getMetaData ();
+      int numCol = rsmd.getColumnCount ();
+
+      // iterates through the result set and output them to standard out.
+      boolean outputHeader = true;
+      String outputString = "";
+      while (rs.next()){
+         if(outputHeader){
+            outputHeader = false;
+         }
+         for (int i=1; i<=numCol; ++i)
+            outputString += (rs.getString (i));
+      }//end while
+      stmt.close ();
+      return outputString;
+   }//end executeQuery
    
 
    public DBProject (String dbname, String dbport, String user, String passwd) throws SQLException {
@@ -196,10 +233,10 @@ public class DBProject {
             System.out.println("                            &           & ");
             System.out.println("                           ,&@@@@@@@@@@@@,");
             System.out.println("                           #@@@*.    ,@@@# ");
-            System.out.println("                           /@@         @@/            ,-------------------------.");
-            System.out.println("                                      #&.            ( How can I help you today? )");
-            System.out.println("                          / &           & %           `-------------------------y'");
-            System.out.println("                           *&.         .&/         ");
+            System.out.println("                           /@@  _   _  @@/            ,-------------------------.");
+            System.out.println("                                u   u   #&.            ( How can I help you today? )");
+            System.out.println("                          / &     L      & %           `y-------------------------'");
+            System.out.println("                           *&.    w     .&/         ");
             System.out.println("                             %.       .%       ");
             System.out.println("                               @.   .@ ");
             System.out.println("                              *((   ((/ ");
@@ -275,16 +312,6 @@ public class DBProject {
          "\n\n*******************************************************\n" +
          "              User Interface                       \n" +
          "*******************************************************\n");
-      System.out.println(" W E L C O M E  T O  H O T E L  S T A N L E Y");
-      System.out.println("  __                   ___        ");
-      System.out.println(" |\"\"|  ___    _   __  |\"\"\"|  __   ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println(" |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|  ");
-      System.out.println("\"\'\'\'\"\'\'\"\'\"\"\'\"\"\"\'\'\"\'\'\'\'\"\"\"\'\"\"\'\"\"\"");
       
       System.out.println(" \n \n W E L C O M E  T O  H O T E L  S T A N L E Y & E L I S E \n\n\n");
       System.out.println("                   \\  |  /         ___________");
@@ -406,7 +433,7 @@ public class DBProject {
    public static void addMaintenanceCompany(DBProject esql){
       // Given maintenance Company details add the maintenance company in the DB
     try {
-       System.out.println("\n\n\n");
+      System.out.println("\n\n\n");
       System.out.println("\t                      @/#    ");
       System.out.println("\t                     (@/   /%");
       System.out.println("\t                     #&@/////");
@@ -507,34 +534,157 @@ public class DBProject {
    }//end addRepair
 
    public static void bookRoom(DBProject esql){
-      System.out.println("\n\n");
-      System.out.println("\t      ______ ______");
-      System.out.println("\t    _/      Y      \\_");
-      System.out.println("\t   // ~~ ~~ | ~~ ~  \\\\");
-      System.out.println("\t  // ~ ~ ~~ | ~~~ ~~ \\\\");
-      System.out.println("\t //________.|.________\\\\");
-      System.out.println("\t`----------`-'----------'");
-      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      System.out.println("\t |    Adding a booking.   |");
-      System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
     // Given hotelID, roomNo and customer Name create a booking in the DB 
       // Your code goes here.
-      // ...
-      // ...
+      try {
+        System.out.println("\n\n");
+        System.out.println("\t      ______ ______");
+        System.out.println("\t    _/      Y      \\_");
+        System.out.println("\t   // ~~ ~~ | ~~ ~  \\\\");
+        System.out.println("\t  // ~ ~ ~~ | ~~~ ~~ \\\\");
+        System.out.println("\t //________.|.________\\\\");
+        System.out.println("\t`----------`-'----------'");
+        System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("\t |    Adding a booking.   |");
+        System.out.println("\t ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        //maxID --> bID
+        ResultSet maxID = esql.executeQueryForID("SELECT MAX(bID) FROM Booking;");
+        int newID = 0;
+        if(maxID.next()) {
+          newID = maxID.getInt(1) + 1; //the parameter 1 means first row
+        }
+        String query = "INSERT INTO Booking (bID, customer, hotelID, roomNo, bookingDate, noOfPeople, price) VALUES ('" + newID + "', ";
+
+        //customer first & last name --> customerID
+        System.out.print("Enter customer first name: ");
+        String custFirstName = in.readLine();
+        checkStr(custFirstName);
+        System.out.print("Enter customer last name: ");
+        String custLastName = in.readLine();
+        checkStr(custLastName);
+        int customerID = esql.executeQuery("SELECT C.customerID FROM Customer C WHERE C.fName = '" + custFirstName.toString() + "' AND C.lName = '" + custLastName.toString()+ "';");
+        query += "'" + customerID + "'" + ", ";
+
+        //input hotelID
+        System.out.print("Enter Hotel ID: ");
+        String hotelID = in.readLine();
+        checkInt(Integer.parseInt(hotelID));
+        query += "'" + hotelID + "'" + ", ";
+
+        //input roomNo
+        System.out.print("Enter Room Number: ");
+        String roomNo = in.readLine();
+        checkInt(Integer.parseInt(roomNo));
+        query += "'" + roomNo + "'" + ", ";
+
+        //input booking date
+        System.out.print("Enter booking date YYYYMMDD: ");
+        String bookingDate = in.readLine();
+        checkInt(Integer.parseInt(bookingDate));
+        query += "'" + bookingDate + "'" + ", ";
+
+        //input number of people
+        System.out.print("Enter number of people: ");
+        String noOfPeople = in.readLine();
+        checkInt(Integer.parseInt(noOfPeople));
+        query += "'" + noOfPeople + "'" + ", ";
+
+        //input price
+        System.out.print("Enter price: ");
+        String price = in.readLine();
+        query += "'" + price + "'" + ");";
+
+        esql.executeUpdate(query);
+        } catch(Exception e) {
+        System.err.println (e.getMessage());
+      }
+
    }//end bookRoom
 
    public static void assignHouseCleaningToRoom(DBProject esql){
     // Given Staff SSN, HotelID, roomNo Assign the staff to the room 
       // Your code goes here.
-      // ...
-      // ...
+      try {
+        //maxID --> bID
+        ResultSet maxID = esql.executeQueryForID("SELECT MAX(asgID) FROM Assigned;");
+        int newID = 0;
+        if(maxID.next()) {
+          newID = maxID.getInt(1) + 1; //the parameter 1 means first row
+      }
+
+      String query = "INSERT INTO Assigned (asgID, staffID, hotelID, roomNo) VALUES ('" + newID + "', ";
+
+      System.out.print("Enter Staff SSN: ");
+      String staffID = in.readLine();
+
+      String staffRole = esql.executeQueryForString("SELECT S.role FROM Staff S WHERE S.SSN = '" + staffID.toString() + "';");
+
+      if(staffRole.equals("HouseCleaning")) {
+        query += "'" + staffID + "'" + ", ";
+      } else {
+        throw new Exception("Error: Only assign house cleaning staff to clean rooms.\n");
+      }
+
+      System.out.print("Enter Hotel ID: ");
+      String hotelID = in.readLine();
+      checkInt(Integer.parseInt(hotelID));
+      query += "'" + hotelID + "'" + ", ";
+
+      System.out.print("Enter Room Number: ");
+      String roomNo = in.readLine();
+      checkInt(Integer.parseInt(roomNo));
+      query += "'" + roomNo + "'" + ");";
+          
+      esql.executeUpdate(query);
+
+      } catch(Exception e) {
+        System.err.println (e.getMessage());
+      }
+
    }//end assignHouseCleaningToRoom
    
    public static void repairRequest(DBProject esql){
     // Given a hotelID, Staff SSN, roomNo, repairID , date create a repair request in the DB
-      // Your code goes here.
-      // ...
-      // ...
+      try {
+      ResultSet maxID = esql.executeQueryForID("SELECT MAX(reqID) FROM Request;");
+      int reqID = 0;
+      if(maxID.next()) {
+        reqID = maxID.getInt(1) + 1;
+      }
+      String query = "INSERT INTO Request (reqID, managerID, repairID, requestDate, description) VALUES ('" + reqID + "', ";
+    
+      System.out.print("Enter Staff SSN: ");
+      String managerID = in.readLine();
+      String staffRole = esql.executeQueryForString("SELECT S.role FROM Staff S WHERE S.SSN = '" + managerID.toString() + "';");
+      String manager = "Manager";
+      
+      if(staffRole.equals(manager)) {
+        query += "'" + managerID + "'" + ", ";
+      }
+      else {
+        throw new Exception("Error: Must be a manager!.\n");
+      }
+
+      System.out.print("Please enter Repair ID: ");
+      String repairID = in.readLine();
+      checkInt(Integer.parseInt(repairID));
+      query += "'" + repairID + "'" + ", ";
+      
+      System.out.print("Please enter Request Date: ");
+      String requestDate = in.readLine();
+      checkInt(Integer.parseInt(requestDate));
+      query += "'" + requestDate + "'" + ", ";
+      
+      System.out.print("Please enter Description: ");
+      String description = in.readLine();
+      query += "'" + description + "'" + ");";
+      
+      esql.executeUpdate(query);
+    } catch(Exception e) {
+      System.err.println (e.getMessage());
+    }
    }//end repairRequest
    
    public static void numberOfAvailableRooms(DBProject esql){
@@ -654,24 +804,24 @@ public class DBProject {
         System.out.println(" ______________________________________________________________________");
         System.out.println(" |.============[_F_E_D_E_R_A_L___R_E_S_E_R_V_E___N_O_T_E_]=============.|");
         System.out.println(" ||%&%&%&%_    _        _ _ _   _ _  _ _ _     _       _    _  %&%&%&%&||");
-        System.out.println(" ||%&.-.&/||_||_ | ||\||||_| \ (_ ||\||_(_  /\|_ |\|V||_|)|/ |\ %&.-.&&||");
-        System.out.println(" ||&// |\ || ||_ \_/| ||||_|_/ ,_)|||||_,_) \/|  ||| ||_|\|\_|| &// |\%||");
+        System.out.println(" ||%&.-.&/||_||_ | ||\\||||_| \\ (_ ||\\||_(_  /\\|_ |\\|V||_|)|/ |\\ %&.-.&&||");
+        System.out.println(" ||&// |\\ || ||_ \\_/| ||||_|_/ ,_)|||||_,_) \\/|  ||| ||_|\\|\\_|| &// |\\%||");
         System.out.println(" ||| | | |%               ,-----,-'____'-,-----,               %| | | |||");
-        System.out.println(" ||| | | |&% """"""""""  [    .-;\"`___ `\";-.    ]             &%| | | |||");
-        System.out.println(" ||&\===//                `).'' .'`_.- `. '.'.(`  A 76355942 J  \\===/&||");
-        System.out.println(" ||&%'-'%/1                // .' /`     \    \\                  \%'-'%||");
-        System.out.println(" ||%&%&%/`   d8888b       // /   \  _  _;,    \\      .-\"\"\"-.  1 `&%&%%||");
-        System.out.println(" ||&%&%&    8P |) Yb     ;; (     > a  a| \    ;;    //A`Y A\\    &%&%&||");
-        System.out.println(" ||&%&%|    8b |) d8     || (    ,\   \ |  )   ||    ||.-'-.||    |%&%&||");
-        System.out.println(" ||%&%&|     Y8888P      ||  '--'/`  -- /-'    ||    \\_/~\_//    |&%&%||");
-        System.out.println(" ||%&%&|                 ||     |\`-.__/       ||     '-...-'     |&%&%||");
+        System.out.println(" ||| | | |&% \"\"\"\"\"\"\"\"\"\"  [    .-;\"`___ `\";-.    ]             &%| | | |||");
+        System.out.println(" ||&\\\\===//                `).'' .'`_.- `. '.'.(`  A 76355942 J  \\\\===/&||");
+        System.out.println(" ||&%'-'%/1                // .' /`     \\    \\\\                  \\%'-'%||");
+        System.out.println(" ||%&%&%/`   d8888b       // /   \\  _  _;,    \\\\      .-\"\"\"-.  1 `&%&%%||");
+        System.out.println(" ||&%&%&    8P |) Yb     ;; (     > a  a| \\    ;;    //A`Y A\\    &%&%&||");
+        System.out.println(" ||&%&%|    8b |) d8     || (    ,\\   \\ |  )   ||    ||.-'-.||    |%&%&||");
+        System.out.println(" ||%&%&|     Y8888P      ||  '--'/`  -- /-'    ||    \\_/~\\_//    |&%&%||");
+        System.out.println(" ||%&%&|                 ||     |\\`-.__/       ||     '-...-'     |&%&%||");
         System.out.println(" ||%%%%|                 ||    /` |._ .|-.     ||                 |%&%&||");
-        System.out.println(" ||%&%&|  A 76355942 J  /;\ _.'   \  } \  '-.  /;\                |%&%&||");
-        System.out.println(" ||&%.-;               (,  '.      \  } `\   \'  ,)   ,.,.,.,.,   ;-.%&||");
-        System.out.println(" ||%( | ) 1  \"\"\"\"\"\"\"   _( \  ;...---------.;.; / )_ ```\"\"\"\"\"\"\" 1 ( | )%||");
-        System.out.println(" ||&%'-'==================\`------------------`/=================='-'%&||");
+        System.out.println(" ||%&%&|  A 76355942 J  /;\\ _.'   \\  } \\  '-.  /;\\                |%&%&||");
+        System.out.println(" ||&%.-;               (,  '.      \\  } `\\   \\'  ,)   ,.,.,.,.,   ;-.%&||");
+        System.out.println(" ||%( | ) 1  \"\"\"\"\"\"\"   _( \\  ;...---------.;.; / )_ ```\"\"\"\"\"\"\" 1 ( | )%||");
+        System.out.println(" ||&%'-'==================\\`------------------`/=================='-'%&||");
         System.out.println(" ||%&JGS&%&%&%&%%&%&&&%&%%&)O N E  D O L L A R(%&%&%&%&%&%&%%&%&&&%&%%&||");
-        System.out.println(" '""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""`");                   
+        System.out.println(" ______________________________________________________________________");                  
 
          
         System.out.print("\tPlease enter hotel ID: ");
